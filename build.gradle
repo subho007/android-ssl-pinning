@@ -1,0 +1,32 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+
+    afterEvaluate {
+        if (getPlugins().hasPlugin('android') ||
+            getPlugins().hasPlugin('android-library')) {
+
+            println name // for debugging
+
+            configure(android.lintOptions) {
+                abortOnError false
+            }
+        }
+
+    }
+}
